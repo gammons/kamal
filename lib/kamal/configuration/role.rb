@@ -41,7 +41,7 @@ class Kamal::Configuration::Role
   end
 
   def publish_args
-    publish.map { |port| argumentize "--publish", port }.flatten
+    (publish || []).map { |port| argumentize "--publish", port }.flatten
   end
 
   def env
