@@ -25,6 +25,7 @@ class Kamal::Commands::App < Kamal::Commands::Base
       *config.volume_args,
       *role_config.asset_volume_args,
       *role_config.label_args,
+      *role_config.publish_args,
       *role_config.option_args,
       config.absolute_image,
       role_config.cmd

@@ -20,6 +20,10 @@ class Kamal::Configuration::Role
     specializations["cmd"]
   end
 
+  def publish
+    specializations["publish"]
+  end
+
   def option_args
     if args = specializations["options"]
       optionize args
@@ -36,6 +40,9 @@ class Kamal::Configuration::Role
     argumentize "--label", labels
   end
 
+  def publish_args
+    publish.map { |port| argumentize "--publish", port }.flatten
+  end
 
   def env
     if config.env && config.env["secret"]

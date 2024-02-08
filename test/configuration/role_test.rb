@@ -16,6 +16,7 @@ class ConfigurationRoleTest < ActiveSupport::TestCase
         "workers" => {
           "hosts" => [ "1.1.1.3", "1.1.1.4" ],
           "cmd" => "bin/jobs",
+          "publish" => [ "9100:9100" ],
           "env" => {
             "REDIS_URL" => "redis://a/b",
             "WEB_CONCURRENCY" => 4
@@ -39,6 +40,10 @@ class ConfigurationRoleTest < ActiveSupport::TestCase
 
   test "label args" do
     assert_equal [ "--label", "service=\"app\"", "--label", "role=\"workers\"" ], @config_with_roles.role(:workers).label_args
+  end
+
+  test "publish args" do
+    assert_equal [ "--publish", "9100:9100" ], @config_with_roles.role(:workers).publish_args
   end
 
   test "special label args for web" do
